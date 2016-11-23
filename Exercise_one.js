@@ -1,11 +1,22 @@
 /**
  * Created by deepa.sainath on 11/23/16.
  */
-var para = document.querySelector('p');
+var myButton = document.querySelector('button');
+var myHeading = document.querySelector('h1');
 
-para.addEventListener('click', updateName);
+function setUserName() {
+    var myName = prompt('Please enter your name.');
+    localStorage.setItem('name', myName);
+    myHeading.textContent = 'I am cool, ' + myName;
+}
 
-function updateName() {
-    var name = prompt('Enter a new name');
-    para.textContent = 'Player 1: ' + name;
+if(!localStorage.getItem('name')) {
+    setUserName();
+} else {
+    var storedName = localStorage.getItem('name');
+    myHeading.textContent = 'I am cooler, ' + storedName;
+}
+
+myButton.onclick = function () {
+    setUserName();
 }
